@@ -1,0 +1,14 @@
+<div class="card card-body">
+  <h3>Assigment form</h3>
+  <form action="/assigments" method="POST" enctype="multipart/form-data">
+    <div class="form-group">
+      <label for="title">Title</label>
+      <input type="text" class="form-control" name="title" required>
+    </div>
+    <div class="form-group">
+      <label for="details">Image</label>
+      <input type="file" class="form-control-file" name="image" accept="image/*" capture="camera">
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
+</div>
