@@ -88,11 +88,11 @@ router.get('/edit/:id', ensureAuthenticated, (req, res) => {
 // Process Form
 router.post('/', ensureAuthenticated, (req, res) => {
   let errors = [];
-  if (!req.body.title) {
-    errors.push({
-      text: 'Please add a title'
-    });
-  }
+  // if (!req.body.title) {
+  //   errors.push({
+  //     text: 'Please add a title'
+  //   });
+  // }
 
   if (errors.length > 0) {
     res.render('assigments/add', {
