@@ -2,7 +2,7 @@
   <div class="card card-body mb-2">
     <h4>{{title}}</h4>
     <p>{{details}}</p>
-    <img src="{{image.imageUrl}}" alt="">
+    <img src="{{image.imageUrl}}" alt="" class="img-thumbnail">
     <a class="btn btn-dark btn-block mb-2" href="/assigments/edit/{{id}}">Edit</a>
     <form method="post" action="/assigments/{{id}}?_method=DELETE">
       <input type="hidden" name="_method" value="DELETE">

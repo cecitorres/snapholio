@@ -6,15 +6,15 @@
 
 <div class="card card-body">
   <h3>Edit Assigment</h3>
-  <form action="/assigments/{{assigment.id}}?_method=PUT" method="post">
+  <form action="/assigments/{{assigment.id}}?_method=PUT" method="POST" enctype="multipart/form-data">
     <input type="hidden" name="_method" value="PUT">
     <div class="form-group">
       <label for="title">Title</label>
       <input type="text" class="form-control" name="title" value="{{assigment.title}}" required>
     </div>
     <div class="form-group">
-      <label for="details">Details</label>
-      <textarea class="form-control" name="details" required>{{assigment.details}}</textarea>
+      <label for="details">Photo</label>
+      <input type="file" class="form-control-file" name="image" accept="image/*" capture="camera" value="Hola">
     </div>
 
     <img src="<%= {{image.imageUrl}} %>" class="img-responsive">

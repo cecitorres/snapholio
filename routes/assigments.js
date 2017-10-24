@@ -157,14 +157,22 @@ router.put('/:id', ensureAuthenticated, (req, res) => {
     })
     .then(assigment => {
       // new values
-      assigment.title = req.body.title;
-      assigment.details = req.body.details;
+      upload(req, res, (err) => {
+        assigment.title = req.body.title;
 
-      assigment.save()
-        .then(assigment => {
-          req.flash('success_msg', 'Video assigment updated');
-          res.redirect('/assigments');
-        })
+        if(req.file != undefined) {   //Si hay imagen nueva
+          assigment.image.imageName = req.file.filename;
+          assigment.image.imagePath = req.file.path;
+          assigment.image.imageType = req.file.mimetype;
+          assigment.image.imageUrl = 'uploads/' + req.file.filename;
+        }
+  
+        assigment.save()
+          .then(assigment => {
+            req.flash('success_msg', 'Assigment updated');
+            res.redirect('/assigments');
+          })
+      });
     });
 });
 
@@ -174,7 +182,7 @@ router.delete('/:id', ensureAuthenticated, (req, res) => {
       _id: req.params.id
     })
     .then(() => {
-      req.flash('success_msg', 'Video assigment removed');
+      req.flash('success_msg', 'Assigment removed');
       res.redirect('/assigments');
     });
 });
