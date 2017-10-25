@@ -13,6 +13,7 @@ const app = express();
 // Load routes
 const assigments = require('./routes/assigments');
 const users = require('./routes/users');
+const admin = require('./routes/admin');
 
 // Passport Config
 require('./config/passport')(passport);
@@ -83,6 +84,7 @@ app.get('/about', (req, res) => {
 // Use routes
 app.use('/assigments', assigments);
 app.use('/users', users);
+app.use('/admin', admin);
 
 const port = process.env.PORT || 3000;
 

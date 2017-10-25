@@ -1,0 +1,9 @@
+{{#each assigments}}
+  <div class="card card-body mb-2">
+    <h4>{{title}}</h4>
+    <p>{{details}}</p>
+    <img src="/{{image.imageUrl}}" alt="" class="img-thumbnail">
+  </div>
+{{else}}
+  <p>No assigments listed</p>
+{{/each}}
