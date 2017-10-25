@@ -1,20 +1,27 @@
+<div class="mx-auto">
+
 <table class="table table-responsive">
   <thead class="thead-dark">
     <tr>
       <th scope="col">Name</th>
       <th scope="col">Last Login</th>
-      <th scope="col">Portafolio</th>
-      <th scope="col">Error</th>
+      <th scope="col"><i class="fa fa-briefcase" aria-hidden="true"></i>
+</th>
+      <th scope="col"><i class="fa fa-user-times" aria-hidden="true"></i>
+</th>
     </tr>
   </thead>
   <tbody>
     {{#each users}}
     <tr>
-      <td><a href="user/{{id}}">{{name}}</a></td>
-      <td>Today</td>
-      <td>Yes</td>
-      <td>No</td>
+      <td><a href="/admin/user/{{id}}">{{name}}</a></td>
+      <td>{{login}}</td>
+      <td><i class="fa fa-check" aria-hidden="true"></i>
+</td>
+      <td><i class="fa fa-times" aria-hidden="true"></i>
+</td>
     </tr>
     {{/each}}
   </tbody>
 </table>
+</div>
