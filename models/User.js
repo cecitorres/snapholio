@@ -20,6 +20,11 @@ const UserSchema = new Schema({
     default: false,
     required: true
   },
+  isGuineaPig: {
+    type: Boolean,
+    default: false,
+    required: true
+  },
   date: {
     type: Date,
     default: Date.now
