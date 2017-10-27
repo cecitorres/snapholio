@@ -107,10 +107,7 @@ router.post('/', ensureAuthenticated, (req, res) => {
     upload(req, res, (err) => {
       let tries = req.body.tries;
       if (req.user.isGuineaPig == true) {
-        if(tries == 3) {
-          tries = 0;
-        }
-        else {
+        if(tries < 3) {
           tries++;
           errors.push({
             text: 'Unknown error, please try again :('
