@@ -16,9 +16,9 @@
     <tr>
       <td><a href="/admin/user/{{id}}">{{name}}</a></td>
       <td>{{login}}</td>
-      <td><i class="fa fa-check" aria-hidden="true"></i>
-</td>
       <td><i class="fa fa-times" aria-hidden="true"></i>
+</td>
+      <td>{{#if isGuineaPig}}<i class="fa fa-check" aria-hidden="true">{{else}}<i class="fa fa-times" aria-hidden="true">{{/if}}</i>
 </td>
     </tr>
     {{/each}}
