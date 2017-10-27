@@ -9,6 +9,7 @@
       <label for="details">Photo</label>
       <input type="file" class="form-control-file" name="image" accept="image/*" capture="camera">
     </div>
+    <input type="number" name="tries" id="" hidden value="{{#if tries}}{{tries}}{{else}}0{{/if}}">
     <button type="submit" class="btn btn-primary">Submit</button>
   </form>
 </div>

@@ -88,30 +88,44 @@ router.get('/edit/:id', ensureAuthenticated, (req, res) => {
 // Process Form
 router.post('/', ensureAuthenticated, (req, res) => {
   let errors = [];
-  // if (!req.body.title) {
-  //   errors.push({
-  //     text: 'Please add a title'
-  //   });
-  // }
-
+  
+  if (req.body.title == "") {
+    errors.push({
+      text: 'Please add a title'
+    });
+  }  
+  
   if (errors.length > 0) {
     res.render('assigments/add', {
       errors: errors,
       title: req.body.title,
+      tries: tries
       // details: req.body.details
     });
   } else {
     // Example in multer
     upload(req, res, (err) => {
-      console.log(req.body);
-      console.log("Upload function called");
-      if (err) {
-        errors.push({
-          text: 'Error: please try again'
-        });
+      let tries = req.body.tries;
+      if (req.user.isGuineaPig == true) {
+        if(tries == 3) {
+          tries = 0;
+        }
+        else {
+          tries++;
+          errors.push({
+            text: 'Unknown error, please try again :('
+          });
+        }
+      }
+      if (err || errors.length > 0) {
+        console.log(tries);
+        // errors.push({
+        //   text: 'Error: please try again'
+        // });
         res.render('assigments/add', {
           errors: errors,
           title: req.body.title,
+          tries: tries          
           // details: req.body.details
         });
       } else {
@@ -125,7 +139,6 @@ router.post('/', ensureAuthenticated, (req, res) => {
             // details: req.body.details
           });
         } else {
-          console.log(req.file);
           const newAssigment = {
             title: req.body.title,
             image: {
