@@ -3,13 +3,10 @@
 {{else}} {{/each}}
 
 <div class="card card-body">
-  <h3>Edit Assigment</h3>
+  <h3>Edit {{assigment.title}}</h3>
   <form action="/assigments/{{assigment.id}}?_method=PUT" method="POST" enctype="multipart/form-data">
     <input type="hidden" name="_method" value="PUT">
-    <div class="form-group">
-      <label for="title">Title</label>
-      <input type="text" class="form-control" name="title" value="{{assigment.title}}" required>
-    </div>
+    <input type="text" class="form-control" name="title" value="{{assigment.title}}" required hidden>
     <div class="form-group">
       <label for="details">Photo</label>
       <img src="/{{assigment.image.imageUrl}}" class="img-thumbnail col-lg-12 col-sm-12">

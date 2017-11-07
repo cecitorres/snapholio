@@ -1,13 +1,9 @@
 <div class="card card-body">
-  <h3>Assigment form</h3>
+  <h3>Add your next assigment</h3>
   <form action="/assigments" method="POST" enctype="multipart/form-data">
     <div class="form-group">
-      <label for="title">Title</label>
-      <input type="text" class="form-control" name="title" required>
-    </div>
-    <div class="form-group">
       <label for="details">Photo</label>
-      <input type="file" class="form-control-file" name="image" accept="image/*" capture="camera">
+      <input type="file" class="form-control-file" name="image" accept="image/*" capture="camera" required>
     </div>
     <input type="number" name="tries" id="" hidden value="{{#if tries}}{{tries}}{{else}}0{{/if}}">
     <button type="submit" class="btn btn-primary">Submit</button>
