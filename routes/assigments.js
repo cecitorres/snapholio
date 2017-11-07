@@ -2,6 +2,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const multer = require('multer');
 const path = require('path');
+const Portfolio = require('../repositories/Portfolio');
 
 const router = express.Router();
 const {
@@ -191,6 +192,23 @@ router.delete('/:id', ensureAuthenticated, (req, res) => {
       req.flash('success_msg', 'Assigment removed');
       res.redirect('/assigments');
     });
+});
+
+router.get('/portfolio/generate', ensureAuthenticated, (req, res) => {
+  Assigment.find({
+    user: req.user.id
+  })
+  .sort({
+    date: 'asc'
+  })
+  .then(assigments => {
+    Portfolio.generate(req.user.name, assigments);
+    req.flash('success_msg', 'Portfolio generated');
+    const title = 'Welcome';
+    res.render('index', {
+      title: title
+    });
+  });
 });
 
 module.exports = router;
