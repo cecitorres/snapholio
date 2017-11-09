@@ -13,6 +13,10 @@ const {
 require('../models/Assigment');
 const Assigment = mongoose.model('assigment');
 
+// Load User Model
+require('../models/User');
+const User = mongoose.model('users');
+
 // Set Storage Engine
 const storage = multer.diskStorage({
   destination: './public/uploads/',
@@ -58,7 +62,8 @@ router.get('/', ensureAuthenticated, (req, res) => {
     })
     .then(assigments => {
       res.render('assigments/index', {
-        assigments: assigments
+        assigments: assigments,
+        numberAssig: assigments.length >= 6 ? true : false
       });
     });
 });
@@ -194,21 +199,31 @@ router.delete('/:id', ensureAuthenticated, (req, res) => {
     });
 });
 
+// Generate Pdf
 router.get('/portfolio/generate', ensureAuthenticated, (req, res) => {
   Assigment.find({
-    user: req.user.id
-  })
-  .sort({
-    date: 'asc'
-  })
-  .then(assigments => {
-    Portfolio.generate(req.user.name, assigments);
-    req.flash('success_msg', 'Portfolio generated');
-    const title = 'Welcome';
-    res.render('index', {
-      title: title
+      user: req.user.id
+    })
+    .sort({
+      date: 'asc'
+    })
+    .then(assigments => {
+      let pdfPath = Portfolio.generate(req.user.name, assigments);
+      req.flash('success_msg', 'Portfolio generated');
+      User.findOne({
+          _id: req.user.id
+        })
+        .then(user => {
+          user.portfolio = pdfPath;
+          user.save()
+            .then(updateUser => {
+              const title = 'Welcome';
+              res.render('assigments/portfolio', {
+                pdfPath: pdfPath
+              });
+            });
+        });
     });
-  });
 });
 
 module.exports = router;

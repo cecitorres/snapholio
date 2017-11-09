@@ -32,6 +32,10 @@ const UserSchema = new Schema({
   last_login: {
     type: Date,
     default: Date.now
+  },
+  portfolio: {
+    type: String,
+    default: ''
   }
 });
 
