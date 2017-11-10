@@ -218,12 +218,22 @@ router.get('/portfolio/generate', ensureAuthenticated, (req, res) => {
           user.save()
             .then(updateUser => {
               const title = 'Welcome';
-              res.render('assigments/portfolio', {
-                pdfPath: pdfPath
-              });
+              res.redirect('/assigments/portfolio');
             });
         });
     });
+});
+
+router.get('/portfolio', ensureAuthenticated, (req, res) => {
+  User.find({
+    _id: req.user.id
+  })
+  .then(user => {
+    console.log(user.portfolio);
+    res.render('assigments/portfolio', {
+      pdfPath: user.portfolio
+    });
+  });
 });
 
 module.exports = router;

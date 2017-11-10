@@ -40,7 +40,7 @@ Portfolio.generate = (user, imgs) => {
   // Close PDF and write file.
   pdf.end();
 
-  return `public/portfolios/${user.split(' ').join('')}.pdf`
+  return `portfolios/${user.split(' ').join('')}.pdf`
 }
 
 module.exports = Portfolio;
