@@ -2,10 +2,15 @@
   "name": "Snapholio App",
   "short_name": "Snapholio",
   "icons": [
-        {
+    {
       "src": "/img/icon-144x144.png",
       "type": "image/png",
       "sizes": "144x144"
+    },
+    {
+      "src": "/img/icon-192x192.png",
+      "type": "image/png",
+      "sizes": "192x192"
     },
     {
       "src": "/img/icon-256x256.png",
