@@ -208,7 +208,7 @@ router.get('/portfolio/generate', ensureAuthenticated, (req, res) => {
       date: 'asc'
     })
     .then(assigments => {
-      let pdfPath = Portfolio.generate(req.user.name, assigments);
+      let pdfPath = Portfolio.generate(req.user, assigments);
       req.flash('success_msg', 'Portfolio generated');
       User.findOne({
           _id: req.user.id
