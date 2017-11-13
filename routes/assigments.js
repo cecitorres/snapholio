@@ -225,11 +225,10 @@ router.get('/portfolio/generate', ensureAuthenticated, (req, res) => {
 });
 
 router.get('/portfolio', ensureAuthenticated, (req, res) => {
-  User.find({
+  User.findOne({
     _id: req.user.id
   })
   .then(user => {
-    console.log(user.portfolio);
     res.render('assigments/portfolio', {
       pdfPath: user.portfolio
     });
