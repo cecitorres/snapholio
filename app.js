@@ -8,6 +8,9 @@ const bodyParser = require('body-parser');
 const passport = require('passport');
 const mongoose = require('mongoose');
 
+//Helpers for routes index
+const {ensureAuthenticated, ensureGuest} = require('./helpers/auth');
+
 const app = express();
 
 // Load routes
@@ -68,7 +71,7 @@ app.use(function(req, res, next){
 });
 
 // Index Route
-app.get('/', (req, res) => {
+app.get('/', ensureGuest, (req, res) => {
   const title = 'Welcome';
   res.render('index', {
     title: title
