@@ -1,9 +1,8 @@
-<a class="btn btn-warning btn-block mb-2" href="/assigments/portfolio/generate"><i class="fa fa-file" aria-hidden="true"></i> Generate my portfolio</a>
 {{#if numberAssig}}
   {{#if user.portfolio}}
-    <a class="btn btn-success btn-block mb-2" href="/assigments/portfolio"><i class="fa fa-download" aria-hidden="true"></i>
- Download my portfolio</a>
+    <a class="btn btn-success btn-block mb-2" href="/assigments/portfolio"><i class="fa fa-download" aria-hidden="true"></i> Download my portfolio</a>
   {{else}}
+    <a class="btn btn-warning btn-block mb-2" href="/assigments/portfolio/generate"><i class="fa fa-file" aria-hidden="true"></i> Generate my portfolio</a>
   {{/if}}
 {{else}}
   <a class="btn btn-primary btn-block mb-2" href="/assigments/add">Add Assigment</a>

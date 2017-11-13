@@ -209,30 +209,18 @@ router.get('/portfolio/generate', ensureAuthenticated, (req, res) => {
     })
     .then(assigments => {
       let pdfPath = Portfolio.generate(req.user, assigments);
-      req.flash('success_msg', 'Portfolio generated');
       User.findOne({
-          _id: req.user.id
-        })
-        .then(user => {
-          user.portfolio = pdfPath;
-          user.save()
-            .then(updateUser => {
-              const title = 'Welcome';
-              res.redirect('/assigments/portfolio');
+        _id: req.user.id
+      })
+      .then(user => {
+        user.portfolio = pdfPath;
+        user.save()
+        .then(updateUser => {
+            req.flash('success_msg', 'Portfolio generated!');
+              res.redirect('/assigments');
             });
         });
     });
-});
-
-router.get('/portfolio', ensureAuthenticated, (req, res) => {
-  User.findOne({
-    _id: req.user.id
-  })
-  .then(user => {
-    res.render('assigments/portfolio', {
-      pdfPath: user.portfolio
-    });
-  });
 });
 
 module.exports = router;
