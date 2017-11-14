@@ -5,9 +5,8 @@
     <tr>
       <th scope="col">Name</th>
       <th scope="col">Last Login</th>
-      <th scope="col"><i class="fa fa-briefcase" aria-hidden="true"></i>
-</th>
-      <th scope="col"><i class="fa fa-user-times" aria-hidden="true"></i>
+      <th scope="col"><i class="fa fa-smile-o" aria-hidden="true"></i>
+      <th scope="col"><i class="fa fa-briefcase" aria-hidden="true"></i></th>
 </th>
     </tr>
   </thead>
@@ -16,9 +15,8 @@
     <tr>
       <td><a href="/admin/user/{{id}}">{{name}}</a></td>
       <td>{{login}}</td>
-      <td><i class="fa fa-times" aria-hidden="true"></i>
-</td>
-      <td>{{#if isGuineaPig}}<i class="fa fa-check" aria-hidden="true">{{else}}<i class="fa fa-times" aria-hidden="true">{{/if}}</i>
+      <td>{{#if isGuineaPig}}<i class="fa fa-times" aria-hidden="true"></i>{{else}}<i class="fa fa-check" aria-hidden="true"></i>{{/if}}</i>
+      <td>{{#if portfolio}}<i class="fa fa-check" aria-hidden="true">{{else}}<i class="fa fa-times" aria-hidden="true">{{/if}}</i></td>
 </td>
     </tr>
     {{/each}}
