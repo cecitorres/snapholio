@@ -61,9 +61,17 @@ router.get('/', ensureAuthenticated, (req, res) => {
       date: 'desc'
     })
     .then(assigments => {
-      res.render('assigments/index', {
-        assigments: assigments,
-        numberAssig: assigments.length >= 6 ? true : false
+      User.findOne({
+        _id: req.user.id
+      })
+      .then(user => {
+        if(user.isGuineaPig && user.portfolio != null) {
+          req.flash('error_msg', 'Unknown error. Portfolio damaged');
+        }
+        res.render('assigments/index', {
+          assigments: assigments,
+          numberAssig: assigments.length >= 6 ? true : false
+        });
       });
     });
 });
@@ -113,7 +121,7 @@ router.post('/', ensureAuthenticated, (req, res) => {
       console.log(`Number Assigment: ${numberofassigments}`);
       upload(req, res, (err) => {
         let tries = req.body.tries; // Obtenemos el número de intentos
-        if (req.user.isGuineaPig == true && (numberofassigments == 2 || numberofassigments == 6) && tries < 3) { // Si el user es de prueba y es la tarea 2 o 6
+        if (req.user.isGuineaPig == true && numberofassigments == 2 && tries < 3) { // Si el user es de prueba y es la tarea 2
           tries++;
           console.log("Tries: " + tries);
           errors.push({
@@ -124,7 +132,20 @@ router.post('/', ensureAuthenticated, (req, res) => {
             title: "Tarea " + numberofassigments,
             tries: tries
           });
-        } else {
+        } 
+        else if(req.user.isGuineaPig == true && numberofassigments == 6 && tries < 4) { // Si el user es de prueba y es la tarea 6
+          tries++;
+          console.log("Tries: " + tries);
+          errors.push({
+            text: 'Unknown error, please try again :('
+          });
+          res.render('assigments/add', {
+            errors: errors,
+            title: "Tarea " + numberofassigments,
+            tries: tries
+          });
+        }
+        else {
           if (req.file == undefined) {
             errors.push({
               text: 'Error: No File Selected!'
