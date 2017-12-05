@@ -33,9 +33,15 @@ router.get('/user/:id', ensureAdmin, (req, res) => {
     user: req.params.id
   })
   .then(assigments => {
-    res.render('admin/user', {
-      assigments: assigments
+    User.findOne({
+      _id: req.params.id
     })
+    .then(user => {
+      res.render('admin/user', {
+        assigments: assigments,
+        user: user
+      })
+    });
   });
 });
 
