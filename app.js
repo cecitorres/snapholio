@@ -72,7 +72,7 @@ app.use(function(req, res, next){
 
 // Index Route
 app.get('/', ensureGuest, (req, res) => {
-  const title = 'Welcome';
+  const title = 'Snapholio';
   res.render('index', {
     title: title
   });
