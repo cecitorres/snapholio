@@ -1,6 +1,10 @@
 {{#if numberAssig}}
   {{#if user.portfolio}}
-    <a class="btn btn-success btn-block mb-2" href="/assigments/portfolio"><i class="fa fa-download" aria-hidden="true"></i> Download my portfolio</a>
+    {{#if user.isGuineaPig}}
+      <a class="btn btn-danger btn-block mb-2 disabled" href="/{{user.portfolio}}" disabled><i class="fa fa-download" aria-hidden="true"></i> Download my portfolio</a>
+    {{else}}
+      <a class="btn btn-success btn-block mb-2" href="/{{user.portfolio}}"><i class="fa fa-download" aria-hidden="true"></i> Download my portfolio</a>
+    {{/if}}
   {{else}}
     <a class="btn btn-warning btn-block mb-2" href="/assigments/portfolio/generate"><i class="fa fa-file" aria-hidden="true"></i> Generate my portfolio</a>
   {{/if}}

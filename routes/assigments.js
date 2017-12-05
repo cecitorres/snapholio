@@ -216,9 +216,15 @@ router.get('/portfolio/generate', ensureAuthenticated, (req, res) => {
         user.portfolio = pdfPath;
         user.save()
         .then(updateUser => {
-            req.flash('success_msg', 'Portfolio generated!');
+            if(user.isGuineaPig) {
+              req.flash('error_msg', 'ERROR! Portfolio not generated');
               res.redirect('/assigments');
-            });
+            }
+            else {
+              req.flash('success_msg', 'Portfolio generated!');
+              res.redirect('/assigments');
+            }
+          });
         });
     });
 });
