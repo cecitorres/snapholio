@@ -44,9 +44,9 @@ Portfolio.generate = (user, imgs) => {
   //   height: 50,
   //   align: 'right'
   // });
-  pdf.image(path.join(__dirname, '../', 'public/portfolios/footer.png'), 0, pdf.page.height - 85, {
-    width:pdf.page.width
-  });
+  // pdf.image(path.join(__dirname, '../', 'public/portfolios/footer.png'), 0, pdf.page.height - 85, {
+  //   width:pdf.page.width
+  // });
 
   // Stream contents to a file
   pdf.pipe(
