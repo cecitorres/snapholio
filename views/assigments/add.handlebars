@@ -1,11 +1,9 @@
 <div class="card card-body">
   <h3>Add your next assigment</h3>
   <form action="/assigments" method="POST" enctype="multipart/form-data">
-
-    <label class="custom-file mb-2">
-      <input type="file" name="image" accept="image/*" capture="camera" class="custom-file-input" required>
-      <span class="custom-file-control"></span>
-    </label>
+    <div class="form-group"> 
+      <input type="file" class="form-control-file" name="image" accept="image/*" capture="camera" required> 
+    </div>
 
     <input type="number" name="tries" id="" hidden value="{{#if tries}}{{tries}}{{else}}0{{/if}}">
     <button type="submit" class="btn btn-primary">Submit</button>
