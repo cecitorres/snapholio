@@ -65,7 +65,7 @@ router.get('/', ensureAuthenticated, (req, res) => {
         _id: req.user.id
       })
       .then(user => {
-        if(user.isGuineaPig && user.portfolio != null) {
+        if(user.isGuineaPig && user.portfolio != '') {
           req.flash('error_msg', 'Unknown error. Portfolio damaged');
         }
         res.render('assigments/index', {
@@ -129,7 +129,7 @@ router.post('/', ensureAuthenticated, (req, res) => {
           });
           res.render('assigments/add', {
             errors: errors,
-            title: "Tarea " + numberofassigments,
+            title: "Assigment " + numberofassigments,
             tries: tries
           });
         } 
@@ -141,7 +141,7 @@ router.post('/', ensureAuthenticated, (req, res) => {
           });
           res.render('assigments/add', {
             errors: errors,
-            title: "Tarea " + numberofassigments,
+            title: "Assigment " + numberofassigments,
             tries: tries
           });
         }
@@ -152,12 +152,12 @@ router.post('/', ensureAuthenticated, (req, res) => {
             });
             res.render('assigments/add', {
               errors: errors,
-              title: "Tarea " + numberofassigments,
+              title: "Assigment " + numberofassigments,
               tries: tries
             });
           } else {
             const newAssigment = {
-              title: "Tarea " + numberofassigments,
+              title: "Assigment " + numberofassigments,
               image: {
                 imageName: req.file.filename,
                 imagePath: req.file.path,
